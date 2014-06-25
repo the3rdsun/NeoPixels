@@ -8,8 +8,6 @@ GPIO.setup(9, GPIO.IN) #MISO
 GPIO.setup(10, GPIO.IN) #MOSI
 GPIO.setup(11, GPIO.IN) #SCLK
 
-P = 'P'
-
 ser = serial.Serial('/dev/ttyAMA0', 9600)
 
 led = raw_input("What led do you want to change?: ")
@@ -26,6 +24,14 @@ print("All colours are percentages out of 100!")
 red = raw_input("How much red?: ")
 green = raw_input("How much green?: ")
 blue = raw_input("How much blue?: ")
+
+red = float(red)
+green = float(green)
+blue = float(blue)
+
+red = red * 2.5
+green = green * 2.5
+blue = blue * 2.5
 
 red = hex(int(red))[2:]
 print(red)
@@ -45,7 +51,7 @@ if len(blue) == 1 :
 
 colour = str(red).upper() + str(green).upper() + str(blue).upper()
 
-ledCol = str(P) + led + colour
+ledCol = 'P' + led + colour
 
 print(ledCol)
 
