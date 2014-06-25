@@ -21,7 +21,29 @@ else :
 	if len(led) == 1 :
 		led = str(0) + led
 
-colour = raw_input("Input hex for the colour to change it to!: ")
+print("All colours are percentages out of 100!")
+
+red = raw_input("How much red?: ")
+green = raw_input("How much green?: ")
+blue = raw_input("How much blue?: ")
+
+red = hex(int(red))[2:]
+print(red)
+green = hex(int(green))[2:]
+print(green)
+blue = hex(int(blue))[2:]
+print(blue)
+
+if len(red) == 1 :
+	red = str(0) + str(red)
+
+if len(green) == 1 :
+	green = str(0) + str(green)
+
+if len(blue) == 1 :
+	blue = str(0) + str(blue)
+
+colour = str(red).upper() + str(green).upper() + str(blue).upper()
 
 ledCol = str(P) + led + colour
 
