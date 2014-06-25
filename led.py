@@ -8,24 +8,25 @@ GPIO.setup(9, GPIO.IN) #MISO
 GPIO.setup(10, GPIO.IN) #MOSI
 GPIO.setup(11, GPIO.IN) #SCLK
 
+P = 'P'
+
 ser = serial.Serial('/dev/ttyAMA0', 9600)
 
-while True :
-	t = datetime.datetime.now().time()	
-	minute = t.minute
-	second = t.second
-	
-	if len(str(minute)) == 1 :
-		minute = str(0) + str(minute)
+led = raw_input("What led do you want to change?: ")
 
-	if len(str(second)) == 1 :
-		second = str(0) + str(second)
+if led.lower() == "all" :
+	led = "FF"
 
-	minSec = str(minute) + str(second)	
+else :
+	if len(led) == 1 :
+		led = str(0) + led
 
-	#print(minSec)
+colour = raw_input("Input hex for the colour to change it to!: ")
 
-	ser.write(str(minSec))
-	time.sleep(1)
+ledCol = str(P) + led + colour
+
+print(ledCol)
+
+ser.write(ledCol)
 
 ser.close()
